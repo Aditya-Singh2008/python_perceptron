@@ -18,8 +18,10 @@ class Perceptron:
     
     def forwardpass(self):
         self.wsums = np.dot(self.weights, self.inputs)
+        self.wsums = self.sigmoid(self.wsums)
     
-    
+    def sigmoid(self, array):
+        return (1/(1+ np.exp(-array)))
 
     def print_all(self):
         print(self.inputs)
