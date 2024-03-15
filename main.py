@@ -10,7 +10,6 @@ def main():
     ptron.passdata(inp, out)
 
     ptron.initialize_weights()
-    ptron.initialize_wsums()
     ptron.forwardpass()
     ptron.print_all()
 

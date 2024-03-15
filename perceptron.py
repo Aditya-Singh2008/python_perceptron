@@ -12,19 +12,23 @@ class Perceptron:
 
     def initialize_weights(self):
         self.weights = self.rng.random((self.output_count, self.input_count))
-    
-    def initialize_wsums(self):
-        self.wsums = np.zeros(self.input_count, dtype=float)
+        self.dweights = np.zeros((self.output_count, self.input_count), dtype=float)
+        print(self.dweights)
+
     
     def forwardpass(self):
         self.wsums = np.dot(self.weights, self.inputs)
-        self.wsums = self.sigmoid(self.wsums)
+        self.wsums, self.dweights = self.sigmoid(self.wsums)
     
     def sigmoid(self, array):
-        return (1/(1+ np.exp(-array)))
+        act = (1/(1+ np.exp(-array)))
+        def divsig(x):
+            return (x * (1 - x))
+        return  act, divsig(act)
 
     def print_all(self):
         print(self.inputs)
         print(self.eoutputs)
         print(self.weights)
-        print(self.wsums)
+        print(self.wsums, np.size(self.wsums))
+        print(self.dweights)
