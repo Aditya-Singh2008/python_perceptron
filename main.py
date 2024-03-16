@@ -7,7 +7,7 @@ def main():
     out = np.arange(1, 3, dtype=float)
     ptron = Perceptron(2, 4)
 
-    ptron.passdata(inp, out)
+    ptron.passdata(inp)
 
     ptron.initialize_weights()
     ptron.forwardpass()

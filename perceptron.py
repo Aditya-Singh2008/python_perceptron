@@ -6,19 +6,23 @@ class Perceptron:
         self.output_count = output_count
         self.rng = np.random.default_rng(10)
 
-    def passdata(self, inputs, eoutputs):
+    def passdata(self, inputs):
         self.inputs = np.array(inputs, dtype=float)
-        self.eoutputs = np.array(eoutputs, dtype=float)
 
     def initialize_weights(self):
         self.weights = self.rng.random((self.output_count, self.input_count))
         self.dweights = np.zeros((self.output_count, self.input_count), dtype=float)
         print(self.dweights)
-
     
     def forwardpass(self):
-        self.wsums = np.dot(self.weights, self.inputs)
+        self.wsums, self.dweights = self.vdot(self.weights, self.inputs)
         self.wsums, self.dweights = self.sigmoid(self.wsums)
+
+    def vdot(self, weights, inputs):
+        dot = np.dot(weights, inputs)
+        def vdot(x):
+            return np.transpose(x)
+        return  dot, vdot(inputs)
     
     def sigmoid(self, array):
         act = (1/(1+ np.exp(-array)))
