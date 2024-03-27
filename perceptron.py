@@ -32,7 +32,6 @@ class Perceptron:
 
     def print_all(self):
         print(self.inputs)
-        print(self.eoutputs)
         print(self.weights)
         print(self.wsums, np.size(self.wsums))
         print(self.dweights)
